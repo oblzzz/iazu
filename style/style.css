@@ -1,0 +1,49 @@
+/* @charset "UTF-8";
+@font-face {
+    font-family: 'Dream Avenue';
+    src: url('./fonts/dream-avenue.woff2') format('woff2'),
+     url('./fonts/dream-avenue.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+
+    font-family: 'Dream Avenue', Arial, sans-serif;
+    h1{
+        font-family: 'dream avenue';
+    }
+} */
+
+@charset "UTF-8";
+
+@font-face {
+    font-family: 'Dream Avenue', Verdana, Geneva, Tahoma, sans-serif;
+    src: url('./fonts/dream-avenue.woff2') format('woff2'),
+         url('./fonts/dream-avenue.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+:root{
+    --marrom: (#4d4520);
+    --verde: (#8aa47f);
+    --verde-cla: (#d0dbcc);
+    --rosa: (#e1c0ff);
+}
+
+
+
+body {
+    font-family: 'Dream Avenue', Arial, sans-serif;
+}
+
+h1 {
+    background-color: var(--rosa);
+    /* font-family: 'Dream Avenue', Arial, sans-serif; */
+}
+
+p{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+   
+}
