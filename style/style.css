@@ -8,7 +8,7 @@
 }
 
 @font-face {
-    font-family: 'Dream Avenue', Verdana, Geneva, Tahoma, sans-serif;
+    font-family: 'Dream Avenue'; 
     src: url('./fonts/dream-avenue.woff2') format('woff2'),
          url('./fonts/dream-avenue.woff') format('woff');
     font-weight: normal;
@@ -25,38 +25,41 @@
 
 
 body {
-    font-family: 'Dream Avenue', Arial, sans-serif;
+    font-family: 'Dream Avenue', Verdana, Geneva, Tahoma, sans-serif;
 }
 
 header {
     display: flex;
-    position: fixed;
-    width: 100vw;
+    /* position: fixed; */
     height: 60px;
     background-color: var(--verde);
 
-    justify-content: space-around;
-     align-items: center;
-    
+    align-items: center;
+}
+
+.menu{
+    width: 100%;
+    /* max-width: 80px; */
 }
 
 .menu ul{
     display: flex;
+    margin: auto;
+    max-width: 800px;
+    justify-content:space-evenly;
     list-style: none;
-    
-    
-    /* gap: 70px; */
 }
 
 .menu a{
+    background-color: var(--marrom);
+    padding: 1rem;
     color: var(--verde-cla);
     text-decoration: none;
-   
 
 }
 
 h1 {
-    background-color: var(--rosa);
+    background-color: var(--marrom);
     color: var(--rosa);
     font-family: 'Dream Avenue', Arial, sans-serif;
 }
