@@ -1,4 +1,4 @@
-const hamburger = document.getElementById('hamburger');
+const hamburger = document.getElementById('burger');
 const nav = document.querySelector('.nav');
 const overlay = document.getElementById('overlay');
 

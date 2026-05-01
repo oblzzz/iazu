@@ -3,16 +3,30 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Berkshire+Swash&family=Gotu&display=swap" rel="stylesheet">
+
     <!-- Descrição (SEO) -->
     <meta
       name="description"
       content="Artesanato, handmade, feito à mão. Bordado, macrame, croche."
     />
     <title>iazu Artesanato</title>
-    <link rel="stylesheet" href="style/style3.css" />
+    <link rel="stylesheet" href="style/style.css" />
   </head>
   <body>
     <header>
+
+      <!-- Burger -->
+      <button class="burger" id="burger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <a href="#home" class="logo-header">iazu</a>
+
       <nav id="nav" class="nav">
         <ul>
           <li><a href="#hero">Home</a></li>
@@ -21,15 +35,6 @@
           <li><a href="#social">Social</a></li>
         </ul>
       </nav>
-
-
-      <!-- Burger -->
-      <button class="hamburger" id="hamburger">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-
 </header>
 
 <!-- Burger -->
@@ -37,16 +42,55 @@
        
     </header>
 
+    <!-- HERO  -->
     <section id="hero" class="hero">
       <div class="logo">
-        <img src="" alt="" />
+        <img src="img/logo-r.svg" alt="Logo do site iazu" />
       </div>
-      <div class="info-hero">
-        <h1>Artesanatos que contam histórias</h1>
-        <p>Linhas que se entrelaçam, formas que ganham vida.</p>
-        <p>Arte feita à mão para transformar espaços e sentimentos.</p>
+      <div class="line">
+        <span></span>
       </div>
     </section>
+    <!-- FIM HERO  -->
+
+      <main>
+        <section>
+          <div class="card">
+            <h1>Arte que nasce das mãos</h1>
+            <p>Cada peça criada pela artista carrega tempo, cuidado e intenção. Entre linhas, nós e texturas, surgem composições únicas que refletem sensibilidade e atenção a cada detalhe. Mais do que decoração, são expressões feitas à mão para dar personalidade e significado ao seu espaço.</p>
+          </div>
+        </section>
+
+        <section class="arco">
+          <div class="frame">
+            <img src="img/ft01.png" alt="">
+          </div>
+        </section>
+
+        <section>
+          <div class="card">
+            <h1>Arte que nasce das mãos</h1>
+            <p>Cada peça criada pela artista carrega tempo, cuidado e intenção. Entre linhas, nós e texturas, surgem composições únicas que refletem sensibilidade e atenção a cada detalhe. Mais do que decoração, são expressões feitas à mão para dar personalidade e significado ao seu espaço.</p>
+          </div>
+        </section>
+
+        <section class="arco">
+          <div class="frame">
+            <img src="img/ft02.png" alt="">
+          </div>
+        </section>
+
+        <section>
+          <div class="card">
+            <h1>Detalhes que contam histórias</h1>
+            <p>O encontro entre técnica e sensibilidade dá vida a peças que vão além da estética. Bordados e tramas em macramê criados à mão, com precisão e intenção, para quem busca algo exclusivo e cheio de significado.</p>
+          </div>
+        </section>
+
+
+      </main>
+        
+
     <script src="script.js"></script> <!-- Burger -->
   </body>
 </html>
