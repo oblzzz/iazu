@@ -17,6 +17,7 @@
 
 :root{
     --marrom: #4d4520;
+    --mostarda: #C69C6D;
     --verde: #8aa47f;
     --verde-cla: #d0dbcc;
     --rosa: #e1c0ff;
@@ -37,12 +38,12 @@ header {
     align-items: center;
 }
 
-.menu{
+.nav{
     width: 100%;
     /* max-width: 80px; */
 }
 
-.menu ul{
+.nav ul{
     display: flex;
     margin: auto;
     max-width: 800px;
@@ -50,13 +51,31 @@ header {
     list-style: none;
 }
 
-.menu a{
+.nav a{
     background-color: var(--marrom);
     padding: 1rem;
     color: var(--verde-cla);
     text-decoration: none;
 
 }
+
+/* Burger */
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.hamburger span {
+  width: 25px;
+  height: 3px;
+  background: white;
+}
+
 
 h1 {
     background-color: var(--marrom);
@@ -67,4 +86,47 @@ h1 {
 p{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
    
+}
+
+
+
+/* Burger */
+
+@media (max-width: 768px) {
+
+  .hamburger {
+    display: flex;
+  }
+
+  .nav {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 250px;
+    height: 100vh;
+    background: #8fa17f;
+    transition: 0.3s;
+    padding-top: 80px;
+  }
+
+  .nav ul {
+    flex-direction: column;
+    gap: 20px;
+    padding-left: 20px;
+  }
+
+  .nav.active {
+    right: 0;
+  }
+
+  .overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    display: none;
+  }
+
+  .overlay.active {
+    display: block;
+  }
 }
