@@ -45,15 +45,14 @@ window.addEventListener('load', jumpToMiddle);
 // ==============================
 track.addEventListener('scroll', () => {
   const itemW = getItemWidth();
-  const min = itemW * 1;
-  const max = itemW * (total * 2);
+  const min = itemW * total;        // início do bloco do meio
+  const max = itemW * (total * 2);  // fim do bloco do meio
 
   if (track.scrollLeft >= max) {
     track.style.scrollBehavior = 'auto';
     track.scrollLeft -= itemW * total;
     track.style.scrollBehavior = '';
-  }
-  if (track.scrollLeft < min) {
+  } else if (track.scrollLeft < min) {  // ← else if, não if
     track.style.scrollBehavior = 'auto';
     track.scrollLeft += itemW * total;
     track.style.scrollBehavior = '';
