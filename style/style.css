@@ -262,13 +262,14 @@ main {
 }
 
 .gallery-track {
+  background-color: var(--verde);
   display: flex;
-  gap: 1rem;
+  gap: 2rem;
   overflow-x: auto;
   cursor: grab;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
-  padding: 1rem;
+  padding: 2.5rem;
   user-select: none;
   -webkit-user-drag: none;
 }
@@ -278,8 +279,9 @@ main {
   width: clamp(165px, 40vw, 220px);
   height: clamp(165px, 40vw, 220px);
   object-fit: cover;
-  border-radius: 1rem;
-  border: 8px solid var(--mostarda);
+  border-radius: 1.5rem;
+  border: 5px solid var(--mostarda);
+  box-shadow: 0.25rem 0.25rem 0.75rem rgba(0, 0, 0, 0.3);
   cursor: pointer;
   -webkit-user-drag: none;
   transition: transform 0.35s ease, box-shadow 0.35s ease;
