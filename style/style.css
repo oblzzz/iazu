@@ -152,20 +152,24 @@ header .logo-header {
 /* ============================================================
    BOTÃO CTA
    ============================================================ */
-.cta-button {
+  .cta-button{
+    transition: .2s;
+  }
+
+  .hero .cta-button {
   display: flex;
   width: clamp(180px, 60vw, 300px);
   margin: 0 auto 2.5rem;
   justify-content: center;
 }
 
-.cta-button a {
+.hero .cta-button a {
   position: relative;
   display: inline-block;
   text-decoration: none;
 }
 
-.cta-button h2 {
+.hero .cta-button h2 {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -179,7 +183,7 @@ header .logo-header {
   z-index: 2;
 }
 
-.cta-button img {
+.hero .cta-button img {
   width: 100%;
 }
 
@@ -187,7 +191,7 @@ header .logo-header {
    LINHA DECORATIVA
    ============================================================ */
 .line {
-  height: 0.5rem;
+  height: 0.35rem;
   background: var(--mostarda);
 }
 
@@ -262,7 +266,7 @@ main {
 }
 
 .gallery-track {
-  background-color: var(--verde);
+  background-color: var(--verde-cla);
   display: flex;
   gap: 2rem;
   overflow-x: auto;
@@ -348,6 +352,48 @@ main {
 
 .prev { left: 30px; }
 .next { right: 30px; }
+
+/* CONTATO */
+
+.contato{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  padding: 100px;
+}
+
+.contato .cta-button{
+  width: clamp(90px, 100px, 120px);
+}
+
+.contato h2{
+  color: var(--mostarda);
+}
+
+footer{
+  text-align: center;
+  font-size: 1rem;
+  background-color: var(--verde);
+  font-family: "Gotu", sans-serif;;
+  color: var(--cinza-c);
+  padding: 1rem;
+}
+
+footer a{
+  font-weight:bold;
+  text-decoration: none;
+  color: var(--branco);
+  transition: .2s;
+}
+
+footer a:hover{
+  color:rgb(84, 106, 48)
+}
+
+.cta-button:hover{
+  transform: translateY(-3px) scale(1.05);
+}
 
 /* ============================================================
    BREAKPOINT — tablet e desktop (min-width: 769px)
