@@ -285,7 +285,7 @@ main{
   cursor: grab;
 
   scroll-snap-type: x mandatory;
-  scroll-behavior: auto;
+  scroll-behavior: smooth;
   padding: 1rem;
 
   user-select: none;
@@ -294,10 +294,11 @@ main{
 }
 
 .gallery-track img {
-  flex: 0 0 auto; /* NÃO deixa o flex distorcer */
-  
-  width: 220px;   /* controla o tamanho */
-  height: 220px;  /* força quadrado */
+  flex: 0 0 auto;
+
+  width: clamp(140px, 20vw, 220px);
+
+  height: clamp(140px, 20vw, 220px);
 
   object-fit: cover;
 
@@ -305,6 +306,9 @@ main{
   border: 8px solid var(--mostarda);
 
   cursor: pointer;
+  /* pointer-events: none; */
+  user-drag: none;
+  -webkit-user-drag: none;
 }
 
 .gallery-track img:hover {
@@ -346,7 +350,7 @@ main{
   max-height: 90%;
   border-radius: 1rem;
 
-  transition: transform 0.3s ease, opacity 0.4s ease;
+  transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
 .lightbox.active {
@@ -448,15 +452,11 @@ main{
 
 
 @media (min-width: 1024px) {
-  .gallery-track img {
-    flex: 0 0 30%; /* 3 imagens */
-  }
+
 }
 
 @media (min-width: 1400px) {
-  .gallery-track img {
-    flex: 0 0 22%; /* 4+ imagens */
-  }
+
 }
 
 

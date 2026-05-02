@@ -1,60 +1,143 @@
 const track = document.querySelector('.gallery-track');
-const imagesOriginal = [...track.querySelectorAll('img')];
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = lightbox.querySelector('img');
+
+const btnNext = document.querySelector('.gallery-next');
+const btnPrev = document.querySelector('.gallery-prev');
+
+const btnNextLight = document.querySelector('.lightbox .next');
+const btnPrevLight = document.querySelector('.lightbox .prev');
+
+// ==============================
+// IMAGENS ORIGINAIS (FONTE REAL)
+// ==============================
+const imagesOriginal = Array.from(track.querySelectorAll('img')).map(img => img.src);
 
 let currentIndex = 0;
 
 // ==============================
-// LOOP INFINITO SIMPLES (CORRETO)
+// LOOP INFINITO (DUPLICA)
 // ==============================
-
-// duplica só UMA vez
-imagesOriginal.forEach(img => {
-  track.appendChild(img.cloneNode(true));
+imagesOriginal.forEach(src => {
+  const clone = document.createElement('img');
+  clone.src = src;
+  track.appendChild(clone);
 });
 
-// reposiciona no início correto
-track.scrollLeft = 0;
+const half = track.scrollWidth / 2;
 
-// loop automático ao chegar no fim
 track.addEventListener('scroll', () => {
-  if (track.scrollLeft >= track.scrollWidth / 2) {
-    track.scrollLeft = 0;
+  if (track.scrollLeft >= half) {
+    track.scrollLeft -= half;
   }
 });
 
 // ==============================
-// DRAG FUNCIONANDO (DESKTOP)
+// DRAG (DESKTOP FUNCIONANDO)
 // ==============================
 let isDown = false;
 let startX;
 let scrollLeft;
+let moved = false;
 
 track.addEventListener('mousedown', (e) => {
   isDown = true;
+  moved = false;
   startX = e.pageX;
   scrollLeft = track.scrollLeft;
   track.classList.add('dragging');
 });
 
-track.addEventListener('mouseleave', () => isDown = false);
-track.addEventListener('mouseup', () => isDown = false);
+track.addEventListener('mouseleave', () => {
+  isDown = false;
+  track.classList.remove('dragging');
+});
+
+track.addEventListener('mouseup', () => {
+  isDown = false;
+  track.classList.remove('dragging');
+});
 
 track.addEventListener('mousemove', (e) => {
   if (!isDown) return;
 
-  e.preventDefault(); // ESSENCIAL PRA FUNCIONAR NO PC
+  const walk = e.pageX - startX;
 
-  const walk = (e.pageX - startX) * 1.5;
+  if (Math.abs(walk) > 5) moved = true;
+
   track.scrollLeft = scrollLeft - walk;
 });
 
 // ==============================
-// BOTÕES
+// ABRIR LIGHTBOX
 // ==============================
-document.querySelector('.gallery-next').onclick = () => {
+track.addEventListener('click', (e) => {
+  if (moved) return;
+
+  const img = e.target;
+  if (img.tagName !== 'IMG') return;
+
+  const index = imagesOriginal.indexOf(img.src);
+  if (index === -1) return;
+
+  showImage(index);
+  lightbox.classList.add('active');
+});
+
+// ==============================
+// TROCAR IMAGEM (COM FADE)
+// ==============================
+function showImage(index) {
+  currentIndex = (index + imagesOriginal.length) % imagesOriginal.length;
+
+  lightboxImg.style.opacity = 0;
+
+  setTimeout(() => {
+    lightboxImg.src = imagesOriginal[currentIndex];
+    lightboxImg.style.opacity = 1;
+  }, 150);
+}
+
+// ==============================
+// BOTÕES DO LIGHTBOX
+// ==============================
+btnNextLight.onclick = (e) => {
+  e.stopPropagation();
+  showImage(currentIndex + 1);
+};
+
+btnPrevLight.onclick = (e) => {
+  e.stopPropagation();
+  showImage(currentIndex - 1);
+};
+
+// ==============================
+// FECHAR LIGHTBOX (SEM BUG)
+// ==============================
+lightbox.addEventListener('click', (e) => {
+  if (e.target === lightbox) {
+    lightbox.classList.remove('active');
+  }
+});
+
+// ==============================
+// TECLADO
+// ==============================
+document.addEventListener('keydown', (e) => {
+  if (!lightbox.classList.contains('active')) return;
+
+  if (e.key === 'ArrowRight') showImage(currentIndex + 1);
+  if (e.key === 'ArrowLeft') showImage(currentIndex - 1);
+  if (e.key === 'Escape') lightbox.classList.remove('active');
+});
+
+// ==============================
+// BOTÕES DO CARROSSEL
+// ==============================
+btnNext.onclick = () => {
   track.scrollBy({ left: 250, behavior: 'smooth' });
 };
 
-document.querySelector('.gallery-prev').onclick = () => {
+btnPrev.onclick = () => {
   track.scrollBy({ left: -250, behavior: 'smooth' });
 };
