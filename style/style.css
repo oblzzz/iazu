@@ -110,10 +110,10 @@ header {
 
 /* HEADER */
 
-.logo-header{
+header .logo-header{
   text-decoration: none;
   color: var(--branco);
-  font-family: 'Dream Avenue', !important;
+  font-family: 'Dream Avenue' !important;
   font-size: 3.75rem;
 }
 
