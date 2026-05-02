@@ -371,7 +371,7 @@ main {
   justify-content: center;
   align-items: center;
   gap: 1rem;
-  padding: 100px;
+  padding: 100px 0;
 }
 
 .contato .cta-button{
