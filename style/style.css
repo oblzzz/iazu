@@ -27,6 +27,13 @@
   font-style: normal;
 }
 
+.bentham-regular {
+  font-family: "Bentham", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+
 
 :root{
     --marrom: #4d4520;
@@ -38,6 +45,7 @@
     --branco: #ffffff;
     --titulo: "Berkshire Swash", serif;
     --texto: "Gotu", sans-serif;
+    --serif: "Bentham", serif;
 }
 
 /* MENU */
@@ -125,12 +133,56 @@ header {
   width: 85vw;
 }
 
+
+/* BOTAO CTA */
+
+.cta-button {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.cta-button h2 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  
+  font-family: var(--serif);
+  font-size: 2.5rem;
+  line-height: 0.9;
+  font-weight: 10;
+  color: var(--branco);
+  text-align: center;
+  z-index: 2;
+}
+
+.cta-button img {
+  display: block;
+  max-width: 300px;
+}
+
+/* .hero .cta{
+  display: flex;
+  margin: auto;
+  padding-bottom: 2.5rem;
+  max-width: 300px;
+}
+
+.cta-button h2{
+  font-family: var(--titulo);
+  color: var(--mostarda);
+} */
+
+/* FIM HERO */
+
 .line{
   height: 0.5rem;
   background: var(--mostarda);
 }
 
-/* FIM HERO */
+
 
 /* MAIN */
 
@@ -156,7 +208,7 @@ main{
   box-shadow: 0.25rem 0.25rem 0.75rem rgba(0, 0, 0, 0.300);
 }
 
-.card h1 {
+.card h2 {
     /* background-color: var(--marrom); */
     color: var(--mostarda);
     font-family: var(--titulo);
