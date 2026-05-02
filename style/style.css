@@ -275,8 +275,8 @@ main {
 
 .gallery-track img {
   flex: 0 0 auto;
-  width: clamp(140px, 50vw, 220px);
-  height: clamp(140px, 50vw, 220px);
+  width: clamp(165px, 40vw, 220px);
+  height: clamp(165px, 40vw, 220px);
   object-fit: cover;
   border-radius: 1rem;
   border: 8px solid var(--mostarda);
