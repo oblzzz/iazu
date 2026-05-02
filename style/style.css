@@ -55,6 +55,8 @@ body {
     background: var(--cinza); */
 }
 
+/* HEADER */
+
 header {
     display: flex;
     /* position: fixed; */
@@ -62,6 +64,17 @@ header {
     background-color: var(--verde);
     align-items: center;
 }
+
+
+
+header .logo-header{
+  text-decoration: none;
+  color: var(--branco);
+  font-family: 'Dream Avenue' !important;
+  font-size: 3.75rem;
+}
+
+/* FIM HEADER */
 
 .nav{
     width: 100%;
@@ -107,17 +120,6 @@ header {
   background: white;
 }
 
-
-/* HEADER */
-
-header .logo-header{
-  text-decoration: none;
-  color: var(--branco);
-  font-family: 'Dream Avenue' !important;
-  font-size: 3.75rem;
-}
-
-/* FIM HEADER */
 
 /* HERO */
 
