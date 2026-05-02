@@ -294,17 +294,17 @@ main{
 }
 
 .gallery-track img {
-  flex: 0 0 45%;
-  aspect-ratio: 1 / 1;
-  width: 100%;
+  flex: 0 0 auto; /* NÃO deixa o flex distorcer */
+  
+  width: 220px;   /* controla o tamanho */
+  height: 220px;  /* força quadrado */
+
+  object-fit: cover;
 
   border-radius: 1rem;
   border: 8px solid var(--mostarda);
 
-  object-fit: cover;
   cursor: pointer;
-
-  transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .gallery-track img:hover {
@@ -440,11 +440,7 @@ main{
 /* GALERIA */
 
 
-  .gallery-track img {
-    flex: 0 0 45%; /* 2 imagens */
-    width: 90px;
-    height: 90px;
-  }
+  
 
 
 /* FIM BREAKPOINT 1 */
