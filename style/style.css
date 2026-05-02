@@ -110,7 +110,7 @@ header {
 
 /* HEADER */
 
-.logo-header{
+a.logo-header{
   text-decoration: none;
   color: var(--branco);
   font-family: 'dream avenue';
