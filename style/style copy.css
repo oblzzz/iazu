@@ -1,10 +1,12 @@
 @charset "UTF-8";
+
 /* RESET */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
+
 @font-face {
     font-family: 'Dream Avenue'; 
     src: url('../fonts/dream-avenue.woff2') format('woff2'),
@@ -12,21 +14,27 @@
     font-weight: normal;
     font-style: normal;
 }
+
 .berkshire-swash-regular {
   font-family: "Berkshire Swash", serif;
   font-weight: 400;
   font-style: normal;
 }
+
 .gotu-regular {
   font-family: "Gotu", sans-serif;
   font-weight: 400;
   font-style: normal;
 }
+
 .bentham-regular {
   font-family: "Bentham", serif;
   font-weight: 400;
   font-style: normal;
 }
+
+
+
 :root{
     --marrom: #4d4520;
     --mostarda: #C69C6D;
@@ -39,28 +47,40 @@
     --texto: "Gotu", sans-serif;
     --serif: "Bentham", serif;
 }
+
 /* MENU */
+
 body {
     /* font-family: Verdana, Geneva, Tahoma, sans-serif;
     background: var(--cinza); */
 }
+
 /* HEADER */
+
 header {
     display: flex;
+    /* position: fixed; */
     height: 4rem;
     background-color: var(--verde);
     align-items: center;
 }
+
+
+
 header .logo-header{
   text-decoration: none;
   color: var(--branco);
   font-family: 'Dream Avenue' !important;
   font-size: 3.75rem;
 }
+
 /* FIM HEADER */
+
 .nav{
     width: 100%;
+    /* max-width: 80px; */
 }
+
 .nav ul{
     display: flex;
     margin: auto;
@@ -68,17 +88,23 @@ header .logo-header{
     justify-content:space-evenly;
     list-style: none;
 }
+
 .nav a{
     display: flex;
     background-color: var(--branco);
+    /* width: 90%; */
     padding: 1rem;
     color: var(--verde-cla);
     text-decoration: none;
 }
+
 /* FIM MENU */
+
 /* BURGER */
+
 .burger {
   display: flex;
+  /* margin: auto; */
   padding: 0 1.25rem;
   flex-direction: column;
   gap: 0.375rem;
@@ -86,34 +112,45 @@ header .logo-header{
   border: none;
   cursor: pointer;
 }
+
 .burger span {
   border-radius: 5px;
   width: 2.2rem;
   height: 0.3rem;
   background: white;
 }
+
+
 /* HERO */
+
+
 .hero .logo{
   padding: 2rem 0;
   background-color: var(--branco);
 }
+
 .hero .logo img{
   display: flex;
   margin: auto;
   width: 85vw;
 }
+
+
 /* BOTAO CTA */
+
 .cta-button {
   position: relative;
   display: flex;
   justify-content: center;
   margin-bottom: 2rem;
 }
+
 .cta-button h2 {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  
   font-family: var(--serif);
   font-size: 2.5rem;
   line-height: 0.9;
@@ -122,99 +159,123 @@ header .logo-header{
   text-align: center;
   z-index: 2;
 }
+
 .cta-button img {
   display: block;
   max-width: 300px;
 }
+
+/* .hero .cta{
+  display: flex;
+  margin: auto;
+  padding-bottom: 2.5rem;
+  max-width: 300px;
+}
+
+.cta-button h2{
+  font-family: var(--titulo);
+  color: var(--mostarda);
+} */
+
 /* FIM HERO */
+
 .line{
   height: 0.5rem;
   background: var(--mostarda);
 }
+
+
+
 /* MAIN */
+
 main{
   background-color: var(--cinza-c);
   padding: 2.5rem 0;
 }
+
 /* FIM MAIN */
+
 /* CARDS */
+
 .card{
   display: flex;
   margin: auto;
   flex-direction: column;
   width: 90vw;
   padding: 2.5rem;
+  /* margin-top: 3rem; */
+  /* margin-bottom: 3rem; */
   background-color: #ffffff;
   border-radius: 1.875rem;
   box-shadow: 0.25rem 0.25rem 0.75rem rgba(0, 0, 0, 0.300);
 }
+
 .card h2 {
+    /* background-color: var(--marrom); */
     color: var(--mostarda);
     font-family: var(--titulo);
     text-align: center;
     padding-bottom: 1.8rem;
 }
+
 .card p{
     font-family: var(--texto);
+    /* text-align: center; */
     text-align: justify;
     line-height: 1.6;
     text-indent: 2em;
 }
+
 /* FIM CARDS */
+
+
 /* ARCOS FRAME */
+
+
 .frame {
   display: flex;
   margin: auto;
   border: 10px solid var(--mostarda);
+  
   width: 90vw;
   max-width: 520px;
-  margin-bottom: 3rem;
+  margin-bottom: 3rem;;
   margin-top: 3rem;
+
   aspect-ratio: 520 / 750;
+  
   border-radius: 50% 50% 20px 20px / 35% 35% 20px 20px;
   overflow: hidden;
   box-shadow: 0.25rem 0.25rem 0.75rem rgba(0, 0, 0, 0.300);
 }
+
 .frame img{
   width: 100%;
   height: 100%; 
-  object-fit: cover;
+  object-fit:cover;
 }
+
 /* GALERIA DE FOTOS */
+
 .gallery {
   position: relative;
 }
 
-/* ✅ CORRIGIDO: setas redesenhadas — agora são redondas e com o mesmo
-   visual das setas do lightbox (fundo translúcido + blur + tamanho fixo).
-   Antes usavam font-size grande + padding, o que distorcia o círculo. */
 .gallery-prev,
 .gallery-next {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-
-  width: 50px;
-  height: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  background: rgba(255, 255, 255, 0.2);
+  
+  background: rgba(0,0,0,0.5);
   border: none;
   color: white;
-  font-size: 1.2rem;
+  font-size: 2rem;
+  padding: 0.8rem;
   cursor: pointer;
   z-index: 10;
   border-radius: 50%;
-  backdrop-filter: blur(5px);
-  transition: background 0.3s ease;
 }
-.gallery-prev:hover,
-.gallery-next:hover {
-  background: rgba(255, 255, 255, 0.35);
-}
-/* ✅ FIM CORREÇÃO SETAS */
 
 .gallery-prev { left: 10px; }
 .gallery-next { right: 10px; }
@@ -224,94 +285,123 @@ main{
   gap: 1rem;
   overflow-x: auto;
   cursor: grab;
+
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
   padding: 1rem;
+
   user-select: none;
+  -webkit-user-drag: none;
+  /* pointer-events: none;  👈 ESSA LINHA resolve 90% dos casos */
+}
+
+.gallery-track img {
+  flex: 0 0 auto;
+
+  width: clamp(140px, 20vw, 220px);
+
+  height: clamp(140px, 20vw, 220px);
+
+  object-fit: cover;
+
+  border-radius: 1rem;
+  border: 8px solid var(--mostarda);
+
+  cursor: pointer;
+  /* pointer-events: none; */
+  user-drag: none;
   -webkit-user-drag: none;
 }
 
-/* ✅ CORRIGIDO: adicionado transition para o hover ficar suave.
-   Antes não havia transition, então o scale acontecia de forma seca/instantânea. */
-.gallery-track img {
-  flex: 0 0 auto;
-  width: clamp(140px, 20vw, 220px);
-  height: clamp(140px, 20vw, 220px);
-  object-fit: cover;
-  border-radius: 1rem;
-  border: 8px solid var(--mostarda);
-  cursor: pointer;
-  user-drag: none;
-  -webkit-user-drag: none;
-  transition: transform 0.35s ease, box-shadow 0.35s ease;
-}
 .gallery-track img:hover {
   transform: scale(1.05);
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
-/* ✅ FIM CORREÇÃO HOVER */
+
 
 .gallery-track.dragging {
   cursor: grabbing;
 }
-/* remove scrollbar */
+
+/* remove scrollbar feio (opcional) */
 .gallery-track::-webkit-scrollbar {
   display: none;
 }
 
-/* LIGHTBOX */
+
+    /* LIGHTBOX */
+
 .lightbox {
   position: fixed;
   inset: 0;
   background: rgba(0,0,0,0.9);
+
   display: flex;
   justify-content: center;
   align-items: center;
+
   opacity: 0;
   pointer-events: none;
   transition: 0.3s;
-  z-index: 9999;
+
+  z-index: 9999; /* 👈 ADICIONE ISSO */
 }
+
 .lightbox img {
   max-width: 90%;
   max-height: 90%;
   border-radius: 1rem;
+
   transition: transform 0.3s ease, opacity 0.3s ease;
 }
+
 .lightbox.active {
   opacity: 1;
   pointer-events: all;
 }
+
 .lightbox button {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
+
   width: 50px;
-  height: 50px;
+  height: 50px; /* 👈 MESMO valor = círculo */
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   background: rgba(255,255,255,0.2);
   border: none;
   color: white;
   font-size: 1.2rem;
   cursor: pointer;
+
   border-radius: 50%;
   backdrop-filter: blur(5px);
 }
+
 .prev {
   left: 30px;
 }
+
 .next {
   right: 30px;
 }
+
 /* FIM GALERIA DE FOTOS */
 
+
+
 @media (max-width: 768px) {
+
   /* BURGER */
+
   .burger {
     display: flex;
   }
+
   .nav {
     position: fixed;
     z-index: 1000;
@@ -323,14 +413,17 @@ main{
     transition: 0.3s;
     padding-top: 80px;
   }
+
   .nav ul {
     flex-direction: column;
     gap: 20px;
     padding-left: 20px;
   }
+
   .nav.active {
     right: 0;
   }
+
   .overlay {
     position: fixed;
     z-index: 900;
@@ -338,21 +431,41 @@ main{
     background: #ffffff74;
     display: none;
   }
+
   .overlay.active {
     display: block;
   }
 }
+
   .gallery-prev, .gallery-next {
     display: none;
   }
+
 /* FIM BURGER */
 
+/* GALERIA */
+
+
+  
+
+
+/* FIM BREAKPOINT 1 */
+
 @media (min-width: 769px) {
+
   .gallery-prev, .gallery-next {
-    display: flex;
+
+    display: block;
   }
 }
+
+
 @media (min-width: 1024px) {
+
 }
+
 @media (min-width: 1400px) {
+
 }
+
+
