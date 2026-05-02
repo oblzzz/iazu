@@ -1,17 +1,25 @@
 @charset "UTF-8";
-/* RESET */
+
+/* ============================================================
+   RESET
+   ============================================================ */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
+
+/* ============================================================
+   FONTES
+   ============================================================ */
 @font-face {
-    font-family: 'Dream Avenue'; 
-    src: url('../fonts/dream-avenue.woff2') format('woff2'),
-         url('../fonts/dream-avenue.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
+  font-family: 'Dream Avenue';
+  src: url('../fonts/dream-avenue.woff2') format('woff2'),
+       url('../fonts/dream-avenue.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
 }
+
 .berkshire-swash-regular {
   font-family: "Berkshire Swash", serif;
   font-weight: 400;
@@ -27,58 +35,45 @@
   font-weight: 400;
   font-style: normal;
 }
-:root{
-    --marrom: #4d4520;
-    --mostarda: #C69C6D;
-    --verde: #8aa47f;
-    --verde-cla: #d0dbcc;
-    --cinza-t:#727272;
-    --cinza-c: #EEEEEE;
-    --branco: #ffffff;
-    --titulo: "Berkshire Swash", serif;
-    --texto: "Gotu", sans-serif;
-    --serif: "Bentham", serif;
+
+/* ============================================================
+   VARIÁVEIS
+   ============================================================ */
+:root {
+  --marrom: #4d4520;
+  --mostarda: #C69C6D;
+  --verde: #8aa47f;
+  --verde-cla: #d0dbcc;
+  --cinza-t: #727272;
+  --cinza-c: #EEEEEE;
+  --branco: #ffffff;
+  --titulo: "Berkshire Swash", serif;
+  --texto: "Gotu", sans-serif;
+  --serif: "Bentham", serif;
 }
-/* MENU */
-body {
-    /* font-family: Verdana, Geneva, Tahoma, sans-serif;
-    background: var(--cinza); */
-}
-/* HEADER */
+
+/* ============================================================
+   HEADER
+   ============================================================ */
 header {
-    display: flex;
-    height: 4rem;
-    background-color: var(--verde);
-    align-items: center;
+  display: flex;
+  height: 4rem;
+  background-color: var(--verde);
+  align-items: center;
 }
-header .logo-header{
+
+header .logo-header {
   text-decoration: none;
   color: var(--branco);
   font-family: 'Dream Avenue' !important;
   font-size: 3.75rem;
 }
-/* FIM HEADER */
-.nav{
-    width: 100%;
-}
-.nav ul{
-    display: flex;
-    margin: auto;
-    max-width: 50rem;
-    justify-content:space-evenly;
-    list-style: none;
-}
-.nav a{
-    display: flex;
-    background-color: var(--branco);
-    padding: 1rem;
-    color: var(--verde-cla);
-    text-decoration: none;
-}
-/* FIM MENU */
-/* BURGER */
+
+/* ============================================================
+   NAVEGAÇÃO — base: mobile (nav fechada, burger visível)
+   ============================================================ */
 .burger {
-  display: flex;
+  display: flex; /* visível no mobile */
   padding: 0 1.25rem;
   flex-direction: column;
   gap: 0.375rem;
@@ -86,32 +81,82 @@ header .logo-header{
   border: none;
   cursor: pointer;
 }
+
 .burger span {
   border-radius: 5px;
   width: 2.2rem;
   height: 0.3rem;
   background: white;
 }
-/* HERO */
-.hero .logo{
+
+.nav {
+  /* mobile: nav fica fora da tela à direita */
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  right: -100%;
+  width: 250px;
+  height: 100vh;
+  background: #8fa17f;
+  transition: right 0.3s;
+  padding-top: 80px;
+}
+
+.nav ul {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-left: 20px;
+  list-style: none;
+}
+
+.nav a {
+  display: flex;
+  background-color: var(--branco);
+  padding: 1rem;
+  color: var(--verde-cla);
+  text-decoration: none;
+}
+
+.nav.active {
+  right: 0;
+}
+
+.overlay {
+  position: fixed;
+  z-index: 900;
+  inset: 0;
+  background: #ffffff74;
+  display: none;
+}
+
+.overlay.active {
+  display: block;
+}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero .logo {
   padding: 2rem 0;
   background-color: var(--branco);
 }
-.hero .logo img{
+
+.hero .logo img {
   display: flex;
   margin: auto;
   width: 85vw;
   max-width: 30rem;
 }
 
-
-/* BOTAO CTA */
+/* ============================================================
+   BOTÃO CTA
+   ============================================================ */
 .cta-button {
   display: flex;
   width: clamp(180px, 60vw, 300px);
-  margin: 0 auto;
+  margin: 0 auto 2.5rem;
   justify-content: center;
-  margin-bottom: 2.5rem;
 }
 
 .cta-button a {
@@ -127,7 +172,6 @@ header .logo-header{
   transform: translate(-50%, -50%);
   font-size: clamp(1.2rem, 8vw, 2.5rem);
   font-family: var(--serif);
-  /* font-size: 2.5rem; */
   line-height: 0.9;
   font-weight: 10;
   color: var(--branco);
@@ -137,22 +181,28 @@ header .logo-header{
 
 .cta-button img {
   width: 100%;
-  /* max-width: 300px; */
 }
 
-/* FIM HERO */
-.line{
+/* ============================================================
+   LINHA DECORATIVA
+   ============================================================ */
+.line {
   height: 0.5rem;
   background: var(--mostarda);
 }
-/* MAIN */
-main{
+
+/* ============================================================
+   MAIN
+   ============================================================ */
+main {
   background-color: var(--cinza-c);
   padding: 2.5rem 0;
 }
-/* FIM MAIN */
-/* CARDS */
-.card{
+
+/* ============================================================
+   CARDS
+   ============================================================ */
+.card {
   display: flex;
   margin: auto;
   flex-direction: column;
@@ -160,78 +210,56 @@ main{
   padding: 2.5rem;
   background-color: #ffffff;
   border-radius: 1.875rem;
-  box-shadow: 0.25rem 0.25rem 0.75rem rgba(0, 0, 0, 0.300);
+  box-shadow: 0.25rem 0.25rem 0.75rem rgba(0, 0, 0, 0.3);
 }
+
 .card h2 {
-    color: var(--mostarda);
-    font-family: var(--titulo);
-    text-align: center;
-    padding-bottom: 1.8rem;
+  color: var(--mostarda);
+  font-family: var(--titulo);
+  text-align: center;
+  padding-bottom: 1.8rem;
 }
-.card p{
-    font-family: var(--texto);
-    text-align: justify;
-    line-height: 1.6;
-    text-indent: 2em;
+
+.card p {
+  font-family: var(--texto);
+  text-align: justify;
+  line-height: 1.6;
+  text-indent: 2em;
 }
-/* FIM CARDS */
-/* ARCOS FRAME */
+
+/* ============================================================
+   ARCO / FRAME
+   ============================================================ */
 .frame {
   display: flex;
-  margin: auto;
+  margin: 3rem auto;
   border: 10px solid var(--mostarda);
   width: 90vw;
   max-width: 520px;
-  margin-bottom: 3rem;
-  margin-top: 3rem;
   aspect-ratio: 520 / 750;
   border-radius: 50% 50% 20px 20px / 35% 35% 20px 20px;
   overflow: hidden;
-  box-shadow: 0.25rem 0.25rem 0.75rem rgba(0, 0, 0, 0.300);
+  box-shadow: 0.25rem 0.25rem 0.75rem rgba(0, 0, 0, 0.3);
 }
-.frame img{
+
+.frame img {
   width: 100%;
-  height: 100%; 
+  height: 100%;
   object-fit: cover;
 }
-/* GALERIA DE FOTOS */
+
+/* ============================================================
+   GALERIA — base: mobile (setas escondidas, scroll livre)
+   ============================================================ */
 .gallery {
   position: relative;
 }
 
-/* ✅ CORRIGIDO: setas redesenhadas — agora são redondas e com o mesmo
-   visual das setas do lightbox (fundo translúcido + blur + tamanho fixo).
-   Antes usavam font-size grande + padding, o que distorcia o círculo. */
+/* Setas escondidas no mobile — o usuário arrasta com o dedo */
 .gallery-prev,
 .gallery-next {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-
-  width: 50px;
-  height: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  background: rgba(255, 255, 255, 0.2);
-  border: none;
-  color: white;
-  font-size: 1.2rem;
-  cursor: pointer;
-  z-index: 10;
-  border-radius: 50%;
-  backdrop-filter: blur(5px);
-  transition: background 0.3s ease;
+  display: none;
 }
-.gallery-prev:hover,
-.gallery-next:hover {
-  background: rgba(255, 255, 255, 0.35);
-}
-/* ✅ FIM CORREÇÃO SETAS */
-
-.gallery-prev { left: 10px; }
-.gallery-next { right: 10px; }
 
 .gallery-track {
   display: flex;
@@ -245,8 +273,6 @@ main{
   -webkit-user-drag: none;
 }
 
-/* ✅ CORRIGIDO: adicionado transition para o hover ficar suave.
-   Antes não havia transition, então o scale acontecia de forma seca/instantânea. */
 .gallery-track img {
   flex: 0 0 auto;
   width: clamp(140px, 20vw, 220px);
@@ -255,47 +281,51 @@ main{
   border-radius: 1rem;
   border: 8px solid var(--mostarda);
   cursor: pointer;
-  user-drag: none;
   -webkit-user-drag: none;
   transition: transform 0.35s ease, box-shadow 0.35s ease;
 }
+
 .gallery-track img:hover {
   transform: scale(1.05);
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
 }
-/* ✅ FIM CORREÇÃO HOVER */
 
 .gallery-track.dragging {
   cursor: grabbing;
 }
-/* remove scrollbar */
+
 .gallery-track::-webkit-scrollbar {
   display: none;
 }
 
-/* LIGHTBOX */
+/* ============================================================
+   LIGHTBOX
+   ============================================================ */
 .lightbox {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.9);
+  background: rgba(0, 0, 0, 0.9);
   display: flex;
   justify-content: center;
   align-items: center;
   opacity: 0;
   pointer-events: none;
-  transition: 0.3s;
+  transition: opacity 0.3s;
   z-index: 9999;
 }
+
 .lightbox img {
   max-width: 90%;
   max-height: 90%;
   border-radius: 1rem;
   transition: transform 0.3s ease, opacity 0.3s ease;
 }
+
 .lightbox.active {
   opacity: 1;
   pointer-events: all;
 }
+
 .lightbox button {
   position: absolute;
   top: 50%;
@@ -305,7 +335,7 @@ main{
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(255,255,255,0.2);
+  background: rgba(255, 255, 255, 0.2);
   border: none;
   color: white;
   font-size: 1.2rem;
@@ -313,60 +343,80 @@ main{
   border-radius: 50%;
   backdrop-filter: blur(5px);
 }
-.prev {
-  left: 30px;
-}
-.next {
-  right: 30px;
-}
-/* FIM GALERIA DE FOTOS */
 
-@media (max-width: 768px) {
-  /* BURGER */
-  .burger {
-    display: flex;
-  }
-  .nav {
-    position: fixed;
-    z-index: 1000;
-    top: 0;
-    right: -100%;
-    width: 250px;
-    height: 100vh;
-    background: #8fa17f;
-    transition: 0.3s;
-    padding-top: 80px;
-  }
-  .nav ul {
-    flex-direction: column;
-    gap: 20px;
-    padding-left: 20px;
-  }
-  .nav.active {
-    right: 0;
-  }
-  .overlay {
-    position: fixed;
-    z-index: 900;
-    inset: 0;
-    background: #ffffff74;
-    display: none;
-  }
-  .overlay.active {
-    display: block;
-  }
-}
-  .gallery-prev, .gallery-next {
-    display: none;
-  }
-/* FIM BURGER */
+.prev { left: 30px; }
+.next { right: 30px; }
 
+/* ============================================================
+   BREAKPOINT — tablet e desktop (min-width: 769px)
+   Tudo que MUDA ou APARECE a partir do tablet entra aqui.
+   ============================================================ */
 @media (min-width: 769px) {
-  .gallery-prev, .gallery-next {
-    display: flex;
+
+  /* Burger some — nav vira barra horizontal */
+  .burger {
+    display: none;
   }
+
+  .nav {
+    position: static;   /* sai do fixed, volta ao fluxo normal */
+    width: 100%;
+    height: auto;
+    background: transparent;
+    padding-top: 0;
+    transition: none;
+  }
+
+  .nav ul {
+    flex-direction: row;
+    justify-content: space-evenly;
+    max-width: 50rem;
+    margin: auto;
+    gap: 0;
+    padding-left: 0;
+  }
+
+  /* Setas da galeria aparecem no tablet/desktop */
+  .gallery-prev,
+  .gallery-next {
+    display: flex;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+    z-index: 10;
+    border-radius: 50%;
+    backdrop-filter: blur(5px);
+    transition: background 0.3s ease;
+  }
+
+  .gallery-prev:hover,
+  .gallery-next:hover {
+    background: rgba(255, 255, 255, 0.35);
+  }
+
+  .gallery-prev { left: 10px; }
+  .gallery-next { right: 10px; }
 }
+
+/* ============================================================
+   BREAKPOINT — desktop grande (min-width: 1024px)
+   ============================================================ */
 @media (min-width: 1024px) {
+  /* ajustes para telas maiores futuramente */
 }
+
+/* ============================================================
+   BREAKPOINT — telas muito largas (min-width: 1400px)
+   ============================================================ */
 @media (min-width: 1400px) {
+  /* ajustes para monitores grandes futuramente */
 }
