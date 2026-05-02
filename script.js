@@ -45,14 +45,14 @@ window.addEventListener('load', jumpToMiddle);
 // ==============================
 track.addEventListener('scroll', () => {
   const itemW = getItemWidth();
-  const min = itemW * total;        // início do bloco do meio
-  const max = itemW * (total * 2);  // fim do bloco do meio
+  const min = itemW * total;
+  const max = itemW * (total * 2);
 
   if (track.scrollLeft >= max) {
     track.style.scrollBehavior = 'auto';
     track.scrollLeft -= itemW * total;
     track.style.scrollBehavior = '';
-  } else if (track.scrollLeft < min) {  // ← else if, não if
+  } else if (track.scrollLeft < min) {
     track.style.scrollBehavior = 'auto';
     track.scrollLeft += itemW * total;
     track.style.scrollBehavior = '';
@@ -60,7 +60,7 @@ track.addEventListener('scroll', () => {
 });
 
 // ==============================
-// DRAG DESKTOP (igual mobile)
+// DRAG DESKTOP
 // ==============================
 let isDown = false;
 let startX;
@@ -101,6 +101,14 @@ btnPrev.addEventListener('click', (e) => {
 });
 
 // ==============================
+// LIGHTBOX — fechar (função unificada)
+// ==============================
+function closeLightbox() {
+  lightbox.classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+// ==============================
 // LIGHTBOX — abre ao clicar na imagem
 // ==============================
 track.addEventListener('click', (e) => {
@@ -115,6 +123,7 @@ track.addEventListener('click', (e) => {
 
   showLightboxImage();
   lightbox.classList.add('active');
+  document.body.style.overflow = 'hidden';
 });
 
 // ==============================
@@ -144,10 +153,10 @@ document.addEventListener('keydown', (e) => {
   if (!lightbox.classList.contains('active')) return;
   if (e.key === 'ArrowRight') { currentIndex = (currentIndex + 1) % total; showLightboxImage(); }
   if (e.key === 'ArrowLeft')  { currentIndex = (currentIndex - 1 + total) % total; showLightboxImage(); }
-  if (e.key === 'Escape') lightbox.classList.remove('active');
+  if (e.key === 'Escape') closeLightbox();
 });
 
-lightbox.addEventListener('click', () => lightbox.classList.remove('active'));
+lightbox.addEventListener('click', closeLightbox);
 
 // ==============================
 // SWIPE MOBILE (LIGHTBOX)
