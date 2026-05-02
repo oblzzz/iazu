@@ -285,7 +285,7 @@ main{
   cursor: grab;
 
   scroll-snap-type: x mandatory;
-  padding: 0 1rem;
+  padding: 1rem;
 
   user-select: none;
   -webkit-user-drag: none;
@@ -293,9 +293,27 @@ main{
 }
 
 .gallery-track img {
-  user-select: none;
-  -webkit-user-drag: none;
+  flex: none;
+
+  width: 120px;
+  height: 120px;
+
+  border-radius: 0.5rem;
+  border: 3px solid var(--mostarda);
+
+  object-fit: cover;
+
+  pointer-events: none; /* 👈 ESSA É A CHAVE */
+
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
 }
+
+.gallery-track img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
 
 .gallery-track.dragging {
   cursor: grabbing;
@@ -306,21 +324,6 @@ main{
   display: none;
 }
 
-.gallery-track img {
-  flex: 0 0 80%; /* celular → 1 imagem */
-  max-width: 400px;
-
-  border-radius: 1rem;
-  object-fit: cover;
-
-  scroll-snap-align: center;
-  cursor: grab;
-  transition: transform 0.3s;
-}
-
-.gallery-track img:hover {
-  transform: scale(1.03);
-}
 
     /* LIGHTBOX */
 
@@ -336,13 +339,16 @@ main{
   opacity: 0;
   pointer-events: none;
   transition: 0.3s;
+
+  z-index: 9999; /* 👈 ADICIONE ISSO */
 }
 
 .lightbox img {
   max-width: 90%;
   max-height: 90%;
   border-radius: 1rem;
-  transition: opacity 0.3s ease;
+
+  transition: transform 0.3s ease, opacity 0.4s ease;
 }
 
 .lightbox.active {
@@ -354,13 +360,20 @@ main{
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  
-  background: var(--cinza-e);
+
+  width: 50px;
+  height: 50px; /* 👈 MESMO valor = círculo */
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(255,255,255,0.2);
   border: none;
   color: white;
-  font-size: 1rem;
+  font-size: 1.2rem;
   cursor: pointer;
-  padding: 1rem;
+
   border-radius: 50%;
   backdrop-filter: blur(5px);
 }
@@ -420,6 +433,10 @@ main{
   }
 }
 
+  .gallery-prev, .gallery-next {
+    display: none;
+  }
+
 /* FIM BURGER */
 
 /* GALERIA */
@@ -427,6 +444,8 @@ main{
 
   .gallery-track img {
     flex: 0 0 45%; /* 2 imagens */
+    width: 90px;
+    height: 90px;
   }
 
 

@@ -1,5 +1,5 @@
 const track = document.querySelector('.gallery-track');
-const images = document.querySelectorAll('.gallery-track img');
+let images = [];
 
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = lightbox.querySelector('img');
@@ -9,18 +9,33 @@ const nextBtn = lightbox.querySelector('.next');
 
 let currentIndex = 0;
 
-// CLICK (abrir imagem)
+// DUPLICAR PARA LOOP
+const originalItems = [...track.children];
+
+originalItems.forEach(item => {
+  const clone = item.cloneNode(true);
+  track.appendChild(clone);
+});
+
+function updateImages() {
+  images = [...track.querySelectorAll('img')];
+}
+
+updateImages();
+
+// CLICK
 track.addEventListener('click', (e) => {
   if (isDown) return;
 
   const img = e.target.closest('img');
   if (!img) return;
 
-  currentIndex = [...images].indexOf(img);
+  currentIndex = images.indexOf(img);
   showImage();
   lightbox.classList.add('active');
 });
 
+// TRANSIÇÃO SUAVE
 function showImage() {
   lightboxImg.style.opacity = 0;
 
@@ -30,52 +45,44 @@ function showImage() {
   }, 150);
 }
 
-// navegação
-nextBtn.addEventListener('click', (e) => {
+// NAV
+nextBtn.onclick = (e) => {
   e.stopPropagation();
   currentIndex = (currentIndex + 1) % images.length;
   showImage();
-});
+};
 
-prevBtn.addEventListener('click', (e) => {
+prevBtn.onclick = (e) => {
   e.stopPropagation();
   currentIndex = (currentIndex - 1 + images.length) % images.length;
   showImage();
-});
+};
 
-// fechar
-lightbox.addEventListener('click', () => {
+// FECHAR
+lightbox.onclick = () => {
   lightbox.classList.remove('active');
-});
-
-// teclado
-document.addEventListener('keydown', (e) => {
-  if (!lightbox.classList.contains('active')) return;
-
-  if (e.key === 'ArrowRight') nextBtn.click();
-  if (e.key === 'ArrowLeft') prevBtn.click();
-  if (e.key === 'Escape') lightbox.classList.remove('active');
-});
+};
 
 // DRAG
-
 let isDown = false;
 let startX;
 let scrollLeft;
 
 track.addEventListener('mousedown', (e) => {
   isDown = true;
-  startX = e.pageX - track.offsetLeft;
+  startX = e.pageX;
   scrollLeft = track.scrollLeft;
   track.classList.add('dragging');
 });
 
-track.addEventListener('mouseleave', () => {
-  isDown = false;
-});
-
 track.addEventListener('mouseup', () => {
   isDown = false;
+  track.classList.remove('dragging');
+});
+
+track.addEventListener('mouseleave', () => {
+  isDown = false;
+  track.classList.remove('dragging');
 });
 
 track.addEventListener('mousemove', (e) => {
@@ -83,24 +90,28 @@ track.addEventListener('mousemove', (e) => {
 
   e.preventDefault();
 
-  const x = e.pageX - track.offsetLeft;
-  const walk = (x - startX) * 2;
+  const walk = (e.pageX - startX) * 1.5;
   track.scrollLeft = scrollLeft - walk;
 });
 
-document.addEventListener('mouseup', () => {
-  isDown = false;
+// LOOP INFINITO
+track.addEventListener('scroll', () => {
+  const half = track.scrollWidth / 2;
+
+  if (track.scrollLeft >= half) {
+    track.scrollLeft -= half;
+  }
+
+  if (track.scrollLeft <= 0) {
+    track.scrollLeft += half;
+  }
 });
 
-// BOTÕES GALERIA
+// BOTÕES
+document.querySelector('.gallery-next').onclick = () => {
+  track.scrollBy({ left: 200, behavior: 'smooth' });
+};
 
-const gPrev = document.querySelector('.gallery-prev');
-const gNext = document.querySelector('.gallery-next');
-
-gNext.addEventListener('click', () => {
-  track.scrollBy({ left: 300, behavior: 'smooth' });
-});
-
-gPrev.addEventListener('click', () => {
-  track.scrollBy({ left: -300, behavior: 'smooth' });
-});
+document.querySelector('.gallery-prev').onclick = () => {
+  track.scrollBy({ left: -200, behavior: 'smooth' });
+};
