@@ -179,3 +179,21 @@ lightbox.addEventListener('touchend', (e) => {
     showImage();
   }
 });
+
+// ==============================
+// 🍔 BURGER MENU
+// ==============================
+const burger = document.getElementById('burger');
+const nav = document.getElementById('nav');
+const overlay = document.getElementById('overlay');
+
+burger.addEventListener('click', () => {
+  nav.classList.toggle('active');
+  overlay.classList.toggle('active');
+});
+
+// fechar clicando no overlay
+overlay.addEventListener('click', () => {
+  nav.classList.remove('active');
+  overlay.classList.remove('active');
+});
