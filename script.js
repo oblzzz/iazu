@@ -2,55 +2,58 @@ const track = document.querySelector('.gallery-track');
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = lightbox.querySelector('img');
 
+const prevBtn = lightbox.querySelector('.prev');
+const nextBtn = lightbox.querySelector('.next');
+
 const btnNext = document.querySelector('.gallery-next');
 const btnPrev = document.querySelector('.gallery-prev');
 
-const btnNextLight = document.querySelector('.lightbox .next');
-const btnPrevLight = document.querySelector('.lightbox .prev');
-
 // ==============================
-// IMAGENS ORIGINAIS (FONTE REAL)
+// IMAGENS
 // ==============================
-const imagesOriginal = Array.from(track.querySelectorAll('img')).map(img => img.src);
-
+const imagesOriginal = [...track.querySelectorAll('img')];
+let images = [];
 let currentIndex = 0;
 
-// ==============================
-// LOOP INFINITO (DUPLICA)
-// ==============================
-imagesOriginal.forEach(src => {
-  const clone = document.createElement('img');
-  clone.src = src;
-  track.appendChild(clone);
+// duplica para loop infinito
+imagesOriginal.forEach(img => {
+  track.appendChild(img.cloneNode(true));
 });
 
+function updateImages() {
+  images = [...track.querySelectorAll('img')];
+}
+
+updateImages();
+
+// ==============================
+// LOOP INFINITO
+// ==============================
 const half = track.scrollWidth / 2;
 
 track.addEventListener('scroll', () => {
   if (track.scrollLeft >= half) {
     track.scrollLeft -= half;
   }
+  if (track.scrollLeft <= 0) {
+    track.scrollLeft += half;
+  }
 });
 
 // ==============================
-// DRAG (DESKTOP FUNCIONANDO)
+// DRAG (IGUAL MOBILE)
 // ==============================
 let isDown = false;
 let startX;
-let scrollLeft;
+let scrollStart;
 let moved = false;
 
 track.addEventListener('mousedown', (e) => {
   isDown = true;
   moved = false;
   startX = e.pageX;
-  scrollLeft = track.scrollLeft;
+  scrollStart = track.scrollLeft;
   track.classList.add('dragging');
-});
-
-track.addEventListener('mouseleave', () => {
-  isDown = false;
-  track.classList.remove('dragging');
 });
 
 track.addEventListener('mouseup', () => {
@@ -58,66 +61,73 @@ track.addEventListener('mouseup', () => {
   track.classList.remove('dragging');
 });
 
+track.addEventListener('mouseleave', () => {
+  isDown = false;
+  track.classList.remove('dragging');
+});
+
 track.addEventListener('mousemove', (e) => {
   if (!isDown) return;
 
-  const walk = e.pageX - startX;
+  e.preventDefault();
+  moved = true;
 
-  if (Math.abs(walk) > 5) moved = true;
-
-  track.scrollLeft = scrollLeft - walk;
+  const walk = (e.pageX - startX) * 1.2;
+  track.scrollLeft = scrollStart - walk;
 });
 
 // ==============================
-// ABRIR LIGHTBOX
+// BOTÕES DO CARROSSEL
+// ==============================
+btnNext.addEventListener('click', (e) => {
+  e.stopPropagation();
+  track.scrollBy({ left: 300, behavior: 'smooth' });
+});
+
+btnPrev.addEventListener('click', (e) => {
+  e.stopPropagation();
+  track.scrollBy({ left: -300, behavior: 'smooth' });
+});
+
+// ==============================
+// LIGHTBOX (CLIQUE NA IMAGEM)
 // ==============================
 track.addEventListener('click', (e) => {
   if (moved) return;
 
-  const img = e.target;
-  if (img.tagName !== 'IMG') return;
+  const img = e.target.closest('img');
+  if (!img) return;
 
-  const index = imagesOriginal.indexOf(img.src);
-  if (index === -1) return;
-
-  showImage(index);
+  currentIndex = images.indexOf(img);
+  showImage();
   lightbox.classList.add('active');
 });
 
 // ==============================
-// TROCAR IMAGEM (COM FADE)
+// MOSTRAR IMAGEM (COM TRANSIÇÃO)
 // ==============================
-function showImage(index) {
-  currentIndex = (index + imagesOriginal.length) % imagesOriginal.length;
-
+function showImage() {
   lightboxImg.style.opacity = 0;
 
   setTimeout(() => {
-    lightboxImg.src = imagesOriginal[currentIndex];
+    lightboxImg.src = images[currentIndex].src;
     lightboxImg.style.opacity = 1;
-  }, 150);
+  }, 200);
 }
 
 // ==============================
-// BOTÕES DO LIGHTBOX
+// SETAS DO LIGHTBOX
 // ==============================
-btnNextLight.onclick = (e) => {
+nextBtn.addEventListener('click', (e) => {
   e.stopPropagation();
-  showImage(currentIndex + 1);
-};
+  currentIndex = (currentIndex + 1) % images.length;
+  showImage();
+});
 
-btnPrevLight.onclick = (e) => {
+prevBtn.addEventListener('click', (e) => {
   e.stopPropagation();
-  showImage(currentIndex - 1);
-};
-
-// ==============================
-// FECHAR LIGHTBOX (SEM BUG)
-// ==============================
-lightbox.addEventListener('click', (e) => {
-  if (e.target === lightbox) {
-    lightbox.classList.remove('active');
-  }
+  currentIndex = (currentIndex - 1 + images.length) % images.length;
+  showImage();
 });
 
 // ==============================
@@ -126,18 +136,46 @@ lightbox.addEventListener('click', (e) => {
 document.addEventListener('keydown', (e) => {
   if (!lightbox.classList.contains('active')) return;
 
-  if (e.key === 'ArrowRight') showImage(currentIndex + 1);
-  if (e.key === 'ArrowLeft') showImage(currentIndex - 1);
-  if (e.key === 'Escape') lightbox.classList.remove('active');
+  if (e.key === 'ArrowRight') {
+    currentIndex = (currentIndex + 1) % images.length;
+    showImage();
+  }
+
+  if (e.key === 'ArrowLeft') {
+    currentIndex = (currentIndex - 1 + images.length) % images.length;
+    showImage();
+  }
+
+  if (e.key === 'Escape') {
+    lightbox.classList.remove('active');
+  }
 });
 
 // ==============================
-// BOTÕES DO CARROSSEL
+// FECHAR LIGHTBOX
 // ==============================
-btnNext.onclick = () => {
-  track.scrollBy({ left: 250, behavior: 'smooth' });
-};
+lightbox.addEventListener('click', () => {
+  lightbox.classList.remove('active');
+});
 
-btnPrev.onclick = () => {
-  track.scrollBy({ left: -250, behavior: 'smooth' });
-};
+// ==============================
+// SWIPE MOBILE (LIGHTBOX)
+// ==============================
+let touchStartX = 0;
+
+lightbox.addEventListener('touchstart', (e) => {
+  touchStartX = e.touches[0].clientX;
+});
+
+lightbox.addEventListener('touchend', (e) => {
+  let touchEndX = e.changedTouches[0].clientX;
+  let diff = touchStartX - touchEndX;
+
+  if (diff > 50) {
+    currentIndex = (currentIndex + 1) % images.length;
+    showImage();
+  } else if (diff < -50) {
+    currentIndex = (currentIndex - 1 + images.length) % images.length;
+    showImage();
+  }
+});

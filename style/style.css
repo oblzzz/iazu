@@ -449,6 +449,13 @@ main{
 
 /* FIM BREAKPOINT 1 */
 
+@media (min-width: 769px) {
+
+  .gallery-prev, .gallery-next {
+
+    display: block;
+  }
+}
 
 
 @media (min-width: 1024px) {
