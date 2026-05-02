@@ -285,6 +285,7 @@ main{
   cursor: grab;
 
   scroll-snap-type: x mandatory;
+  scroll-behavior: auto;
   padding: 1rem;
 
   user-select: none;
@@ -301,8 +302,9 @@ main{
   border: 8px solid var(--mostarda);
 
   object-fit: cover;
-
   cursor: pointer;
+
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .gallery-track img:hover {

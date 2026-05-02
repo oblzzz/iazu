@@ -69,7 +69,7 @@ track.addEventListener('mousemove', (e) => {
 
   moved = true;
 
-  const walk = (e.pageX - startX) * 1.5;
+  const walk = (e.pageX - startX) * 1.2;
   track.scrollLeft = scrollLeft - walk;
 });
 
@@ -88,7 +88,12 @@ track.addEventListener('click', (e) => {
 });
 
 function showImage() {
-  lightboxImg.src = images[currentIndex].src;
+  lightboxImg.style.opacity = 0;
+
+  setTimeout(() => {
+    lightboxImg.src = images[currentIndex].src;
+    lightboxImg.style.opacity = 1;
+  }, 200);
 }
 
 // botões desktop
