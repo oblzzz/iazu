@@ -113,7 +113,7 @@ header {
 a.logo-header{
   text-decoration: none;
   color: var(--branco);
-  font-family: 'Dream Avenue';
+  font-family: 'Dream Avenue', serif;
   font-size: 3.75rem;
 }
 
