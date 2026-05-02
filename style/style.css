@@ -40,7 +40,7 @@
     --mostarda: #C69C6D;
     --verde: #8aa47f;
     --verde-cla: #d0dbcc;
-    --conza-t:#727272;
+    --cinza-t:#727272;
     --cinza-c: #EEEEEE;
     --branco: #ffffff;
     --titulo: "Berkshire Swash", serif;
@@ -256,8 +256,27 @@ main{
 /* GALERIA DE FOTOS */
 
 .gallery {
-  padding: 2rem 0;
+  position: relative;
 }
+
+.gallery-prev,
+.gallery-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  
+  background: rgba(0,0,0,0.5);
+  border: none;
+  color: white;
+  font-size: 2rem;
+  padding: 0.8rem;
+  cursor: pointer;
+  z-index: 10;
+  border-radius: 50%;
+}
+
+.gallery-prev { left: 10px; }
+.gallery-next { right: 10px; }
 
 .gallery-track {
   display: flex;
@@ -267,6 +286,15 @@ main{
 
   scroll-snap-type: x mandatory;
   padding: 0 1rem;
+
+  user-select: none;
+  -webkit-user-drag: none;
+  /* pointer-events: none;  👈 ESSA LINHA resolve 90% dos casos */
+}
+
+.gallery-track img {
+  user-select: none;
+  -webkit-user-drag: none;
 }
 
 .gallery-track.dragging {
@@ -314,11 +342,35 @@ main{
   max-width: 90%;
   max-height: 90%;
   border-radius: 1rem;
+  transition: opacity 0.3s ease;
 }
 
 .lightbox.active {
   opacity: 1;
   pointer-events: all;
+}
+
+.lightbox button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  
+  background: var(--cinza-e);
+  border: none;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 1rem;
+  border-radius: 50%;
+  backdrop-filter: blur(5px);
+}
+
+.prev {
+  left: 30px;
+}
+
+.next {
+  right: 30px;
 }
 
 /* FIM GALERIA DE FOTOS */
