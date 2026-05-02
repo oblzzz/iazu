@@ -1,47 +1,67 @@
+// ==============================
+// SETUP INICIAL
+// ==============================
 const track = document.querySelector('.gallery-track');
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = lightbox.querySelector('img');
-
 const prevBtn = lightbox.querySelector('.prev');
 const nextBtn = lightbox.querySelector('.next');
-
 const btnNext = document.querySelector('.gallery-next');
 const btnPrev = document.querySelector('.gallery-prev');
 
-// ==============================
-// IMAGENS
-// ==============================
 const imagesOriginal = [...track.querySelectorAll('img')];
-let images = [];
 let currentIndex = 0;
 
-// duplica para loop infinito
+// ==============================
+// LOOP INFINITO — clona antes e depois
+// ==============================
+imagesOriginal.forEach(img => {
+  track.insertBefore(img.cloneNode(true), track.firstChild);
+});
 imagesOriginal.forEach(img => {
   track.appendChild(img.cloneNode(true));
 });
 
-function updateImages() {
-  images = [...track.querySelectorAll('img')];
+let allImgs = [...track.querySelectorAll('img')];
+const total = imagesOriginal.length;
+
+function getItemWidth() {
+  const img = allImgs[0];
+  const style = getComputedStyle(track);
+  const gap = parseFloat(style.gap) || 16;
+  return img.offsetWidth + gap;
 }
 
-updateImages();
+function jumpToMiddle() {
+  track.style.scrollBehavior = 'auto';
+  track.scrollLeft = getItemWidth() * total;
+  track.style.scrollBehavior = '';
+}
+
+window.addEventListener('load', jumpToMiddle);
 
 // ==============================
-// LOOP INFINITO
+// LOOP — reposicionamento silencioso
 // ==============================
-const half = track.scrollWidth / 2;
-
 track.addEventListener('scroll', () => {
-  if (track.scrollLeft >= half) {
-    track.scrollLeft -= half;
+  const itemW = getItemWidth();
+  const min = itemW * 1;
+  const max = itemW * (total * 2);
+
+  if (track.scrollLeft >= max) {
+    track.style.scrollBehavior = 'auto';
+    track.scrollLeft -= itemW * total;
+    track.style.scrollBehavior = '';
   }
-  if (track.scrollLeft <= 0) {
-    track.scrollLeft += half;
+  if (track.scrollLeft < min) {
+    track.style.scrollBehavior = 'auto';
+    track.scrollLeft += itemW * total;
+    track.style.scrollBehavior = '';
   }
 });
 
 // ==============================
-// DRAG (IGUAL MOBILE)
+// DRAG DESKTOP (igual mobile)
 // ==============================
 let isDown = false;
 let startX;
@@ -54,26 +74,19 @@ track.addEventListener('mousedown', (e) => {
   startX = e.pageX;
   scrollStart = track.scrollLeft;
   track.classList.add('dragging');
-});
-
-track.addEventListener('mouseup', () => {
-  isDown = false;
-  track.classList.remove('dragging');
-});
-
-track.addEventListener('mouseleave', () => {
-  isDown = false;
-  track.classList.remove('dragging');
-});
-
-track.addEventListener('mousemove', (e) => {
-  if (!isDown) return;
-
   e.preventDefault();
-  moved = true;
+});
 
-  const walk = (e.pageX - startX) * 1.2;
-  track.scrollLeft = scrollStart - walk;
+document.addEventListener('mouseup', () => {
+  isDown = false;
+  track.classList.remove('dragging');
+});
+
+document.addEventListener('mousemove', (e) => {
+  if (!isDown) return;
+  const walk = e.pageX - startX;
+  if (Math.abs(walk) > 5) moved = true;
+  track.scrollLeft = scrollStart - walk * 1.2;
 });
 
 // ==============================
@@ -81,107 +94,75 @@ track.addEventListener('mousemove', (e) => {
 // ==============================
 btnNext.addEventListener('click', (e) => {
   e.stopPropagation();
-  track.scrollBy({ left: 300, behavior: 'smooth' });
+  track.scrollBy({ left: getItemWidth() * 3, behavior: 'smooth' });
 });
-
 btnPrev.addEventListener('click', (e) => {
   e.stopPropagation();
-  track.scrollBy({ left: -300, behavior: 'smooth' });
+  track.scrollBy({ left: -getItemWidth() * 3, behavior: 'smooth' });
 });
 
 // ==============================
-// LIGHTBOX (CLIQUE NA IMAGEM)
+// LIGHTBOX — abre ao clicar na imagem
 // ==============================
 track.addEventListener('click', (e) => {
   if (moved) return;
-
   const img = e.target.closest('img');
   if (!img) return;
 
-  currentIndex = images.indexOf(img);
-  showImage();
+  const src = img.src;
+  const origIdx = imagesOriginal.findIndex(i => i.src === src);
+  if (origIdx === -1) return;
+  currentIndex = origIdx;
+
+  showLightboxImage();
   lightbox.classList.add('active');
 });
 
 // ==============================
-// MOSTRAR IMAGEM (COM TRANSIÇÃO)
+// LIGHTBOX — exibir imagem
 // ==============================
-function showImage() {
+function showLightboxImage() {
   lightboxImg.style.opacity = 0;
-
   setTimeout(() => {
-    lightboxImg.src = images[currentIndex].src;
+    lightboxImg.src = imagesOriginal[currentIndex].src;
     lightboxImg.style.opacity = 1;
   }, 200);
 }
 
-// ==============================
-// SETAS DO LIGHTBOX
-// ==============================
 nextBtn.addEventListener('click', (e) => {
   e.stopPropagation();
-  currentIndex = (currentIndex + 1) % images.length;
-  showImage();
+  currentIndex = (currentIndex + 1) % total;
+  showLightboxImage();
 });
 
 prevBtn.addEventListener('click', (e) => {
   e.stopPropagation();
-  currentIndex = (currentIndex - 1 + images.length) % images.length;
-  showImage();
+  currentIndex = (currentIndex - 1 + total) % total;
+  showLightboxImage();
 });
 
-// ==============================
-// TECLADO
-// ==============================
 document.addEventListener('keydown', (e) => {
   if (!lightbox.classList.contains('active')) return;
-
-  if (e.key === 'ArrowRight') {
-    currentIndex = (currentIndex + 1) % images.length;
-    showImage();
-  }
-
-  if (e.key === 'ArrowLeft') {
-    currentIndex = (currentIndex - 1 + images.length) % images.length;
-    showImage();
-  }
-
-  if (e.key === 'Escape') {
-    lightbox.classList.remove('active');
-  }
+  if (e.key === 'ArrowRight') { currentIndex = (currentIndex + 1) % total; showLightboxImage(); }
+  if (e.key === 'ArrowLeft')  { currentIndex = (currentIndex - 1 + total) % total; showLightboxImage(); }
+  if (e.key === 'Escape') lightbox.classList.remove('active');
 });
 
-// ==============================
-// FECHAR LIGHTBOX
-// ==============================
-lightbox.addEventListener('click', () => {
-  lightbox.classList.remove('active');
-});
+lightbox.addEventListener('click', () => lightbox.classList.remove('active'));
 
 // ==============================
 // SWIPE MOBILE (LIGHTBOX)
 // ==============================
 let touchStartX = 0;
-
-lightbox.addEventListener('touchstart', (e) => {
-  touchStartX = e.touches[0].clientX;
-});
-
+lightbox.addEventListener('touchstart', (e) => { touchStartX = e.touches[0].clientX; });
 lightbox.addEventListener('touchend', (e) => {
-  let touchEndX = e.changedTouches[0].clientX;
-  let diff = touchStartX - touchEndX;
-
-  if (diff > 50) {
-    currentIndex = (currentIndex + 1) % images.length;
-    showImage();
-  } else if (diff < -50) {
-    currentIndex = (currentIndex - 1 + images.length) % images.length;
-    showImage();
-  }
+  const diff = touchStartX - e.changedTouches[0].clientX;
+  if (diff > 50)       { currentIndex = (currentIndex + 1) % total; showLightboxImage(); }
+  else if (diff < -50) { currentIndex = (currentIndex - 1 + total) % total; showLightboxImage(); }
 });
 
 // ==============================
-// 🍔 BURGER MENU
+// BURGER MENU
 // ==============================
 const burger = document.getElementById('burger');
 const nav = document.getElementById('nav');
@@ -192,7 +173,6 @@ burger.addEventListener('click', () => {
   overlay.classList.toggle('active');
 });
 
-// fechar clicando no overlay
 overlay.addEventListener('click', () => {
   nav.classList.remove('active');
   overlay.classList.remove('active');

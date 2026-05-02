@@ -9,8 +9,8 @@
 
 @font-face {
     font-family: 'Dream Avenue'; 
-    src: url('./fonts/dream-avenue.woff2') format('woff2'),
-         url('./fonts/dream-avenue.woff') format('woff');
+    src: url('../fonts/dream-avenue.woff2') format('woff2'),
+         url('../fonts/dream-avenue.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
