@@ -453,14 +453,9 @@ footer a:hover{
   }
 
   .logo-header{
-    padding-left: 1.25rem;
-    transition: color .2s;
+    padding-left: 1.5rem;
   }
 
-  .logo-header:hover{
-    /* color: var(--marrom); */
-    opacity: .5;
-  }
 
   .nav {
     position: static;   /* sai do fixed, volta ao fluxo normal */
@@ -511,22 +506,22 @@ footer a:hover{
     display: inline-block;
   }
 
-.nav a::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  bottom: 12px;
-  width: 50%;
-  height: 1px;
-  background-color: currentColor;
-  transform: translateX(-50%) scaleX(0);
-  transform-origin: center;
-  transition: transform 0.3s ease;
-}
+  .nav a::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 13px;
+    width: 50%;
+    height: 1px;
+    background-color: currentColor;
+    transform: translateX(-50%) scaleX(0);
+    transform-origin: center;
+    transition: transform 0.3s ease;
+  }
 
-.nav a:hover::after {
-  transform: translateX(-50%) scaleX(1);
-}
+  .nav a:hover::after {
+    transform: translateX(-50%) scaleX(1);
+  }
 
 
   
