@@ -61,6 +61,7 @@
   --titulo: "Berkshire Swash", serif;
   --texto: "Gotu", sans-serif;
   --serif: "Fraunces", serif;
+  --shadow: 0.25rem 0.25rem 0.75rem rgba(0, 0, 0, 0.3);
 }
 
 /* ============================================================
@@ -225,7 +226,7 @@ main {
   padding: 2.5rem;
   background-color: #ffffff;
   border-radius: 1.875rem;
-  box-shadow: 0.25rem 0.25rem 0.75rem rgba(0, 0, 0, 0.3);
+  box-shadow: var(--shadow);
 }
 
 .card h2 {
@@ -254,7 +255,7 @@ main {
   aspect-ratio: 520 / 750;
   border-radius: 50% 50% 20px 20px / 35% 35% 20px 20px;
   overflow: hidden;
-  box-shadow: 0.25rem 0.25rem 0.75rem rgba(0, 0, 0, 0.3);
+  box-shadow: var(--shadow);
 }
 
 .frame img {
@@ -296,7 +297,7 @@ main {
   object-fit: cover;
   border-radius: 1.5rem;
   border: 5px solid var(--mostarda);
-  box-shadow: 0.25rem 0.25rem 0.75rem rgba(0, 0, 0, 0.3);
+  box-shadow: var(--shadow);
   cursor: pointer;
   -webkit-user-drag: none;
   transition: transform 0.35s ease, box-shadow 0.35s ease;
@@ -383,6 +384,7 @@ main {
   font-weight: 600;
   color: var(--mostarda);
 }
+
 
 footer{
   text-align: center;
