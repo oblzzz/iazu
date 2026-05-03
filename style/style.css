@@ -290,10 +290,12 @@ main {
   -webkit-user-drag: none;
 }
 
+/* CONTROLE DAS MINIATURAS */
+
 .gallery-track img {
   flex: 0 0 auto;
-  width: clamp(165px, 40vw, 220px);
-  height: clamp(165px, 40vw, 220px);
+  width: clamp(165px, 50vw, 320px);
+  height: clamp(165px, 50vw, 320px);
   object-fit: cover;
   border-radius: 1.5rem;
   border: 5px solid var(--mostarda);
