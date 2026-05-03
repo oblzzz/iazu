@@ -37,10 +37,10 @@
 }
 
 
-.fraunces -<uniquifier> {
+.fraunces{
   font-family: "Fraunces", serif;
   font-optical-sizing: auto;
-  font-weight: <weight>;
+  font-weight: 500;
   font-style: normal;
   font-variation-settings:
     "SOFT" 0,
