@@ -33,10 +33,13 @@
 
       <nav id="nav" class="nav">
         <ul>
-          <li><a href="#hero">Home</a></li>
+          <li><a href="#hero-mobile">Home</a></li>
+          <span class="nav-divider"></span>
           <li><a href="#sobre">Sobre</a></li>
-          <li><a href="#projetos">Projetos</a></li>
-          <li><a href="#social">Social</a></li>
+          <span class="nav-divider"></span>
+          <li><a href="#gallery">Galeria</a></li>
+          <span class="nav-divider"></span>
+          <li><a href="#contato">Contato</a></li>
         </ul>
       </nav>
     </header>
@@ -46,17 +49,28 @@
         
       <!-- HERO  -->
       <section id="hero" class="hero">
-        <div class="logo">
-          <img src="img/logo-r.svg" alt="Logo do site iazu" />
+        
+        <!-- HERO MOBILE -->
+        <div class="hero-mobile">
+          <div class="logo">
+            <img src="img/logo-r.svg" alt="Logo do site iazu" />
+          </div>
         </div>
 
-        <div class="cta-button">
-          <a href="https://wa.me/5543999627925?text=Olá%20gostaria%20de%20mais%20informações." target="_blank" rel="noopener noreferrer nofollow">
-            <h2>Faça sua <br>encomenda</h2>
-            <img src="img/cta-button.svg" alt="Botão para fazer encomendas" class="cta">
-          </a>
-        </div>
+        <!-- HERO DESKTOP -->
+         <div class="hero-desktop">
+          <img src="img/wire-left.svg" alt="decoração do site" class="wire-left">
+          <img src="img/wire-right.svg" alt="decoração do site" class="wire-right">
+          <img src="img/hands.svg" alt="" class="hands">
+         </div>
       </section>
+          
+      <div class="cta-button">
+        <a href="https://wa.me/5543999627925?text=Olá%20gostaria%20de%20mais%20informações." target="_blank" rel="noopener noreferrer nofollow">
+          <h2>Faça sua <br>encomenda</h2>
+          <img src="img/cta-button.svg" alt="Botão para fazer encomendas" class="cta">
+        </a>
+      </div>
 
       <!-- FIM HERO  -->
 
@@ -67,7 +81,7 @@
 
         <main>
           <div class="teste">
-            <section>
+            <section id="sobre" class="sobre">
               <div class="card">
                 <h2>Arte que nasce das mãos</h2>
                 <p>Cada peça criada pela artista carrega tempo, cuidado e intenção. Entre linhas, nós e texturas, surgem composições únicas que refletem sensibilidade e atenção a cada detalhe. Mais do que decoração, são expressões feitas à mão para dar personalidade e significado ao seu espaço.</p>
@@ -80,8 +94,8 @@
             </section>
             <section>
               <div class="card">
-                <h2>Arte que nasce das mãos</h2>
-                <p>Cada criação é feita à mão, com atenção aos detalhes que fazem diferença no resultado final. Bordados e tramas em macramê desenvolvidos com cuidado no acabamento, proporção e escolha dos materiais. Peças únicas, pensadas para compor ambientes com autenticidade.</p>
+                <h2>Detalhes que contam histórias</h2>
+                <p>O encontro entre técnica e sensibilidade dá vida a peças que vão além da estética. Bordados e tramas em macramê criados à mão, com precisão e intenção, para quem busca algo exclusivo e cheio de significado.</p>
               </div>
             </section>
             <section class="arco">
@@ -98,7 +112,7 @@
 
       <!-- GALERIA DE FOTOS -->
 
-      <section class="gallery">
+      <section id="gallery" class="gallery">
 
         <button class="gallery-prev">
           <i class="fa-solid fa-chevron-left"></i>
@@ -139,18 +153,18 @@
 
       </section>
 
-      <section class="contato">
+      <section id="contato" class="contato">
         <h2>Contato</h2>
 
-        <div class="cta-button">
+        <div class="contato-btn">
           <a href="https://wa.me/5543999627925?text=Olá%20gostaria%20de%20mais%20informações." target="_blank" rel="noopener noreferrer nofollow">
-            <img src="img/whats.svg" alt="Botão para etrar em contato pelo whatsapp" class="cta">
+            <img src="img/whats.svg" alt="Botão para etrar em contato pelo whatsapp" class="ctbt">
           </a>
         </div>
 
-        <div class="cta-button">
+        <div class="contato-btn">
           <a href="https://www.instagram.com/iazu_handmade" target="_blank" rel="noopener noreferrer nofollow">
-            <img src="img/inst.svg" alt="Botão para ir para o instagram" class="cta">
+            <img src="img/inst.svg" alt="Botão para ir para o instagram" class="ctbt">
           </a>
         </div>
       </section>
