@@ -682,12 +682,10 @@ footer a:hover{
     right: 2rem;
   }
 
-  /* .arco:nth-of-type(4) .frame {
-    /* display: flex; */
-    /* position: absolute; */
+   .arco:nth-of-type(4) .frame {
     top: -10rem;
     right: 11rem;
-  } */
+  }
   
 
   /* Setas da galeria aparecem no tablet/desktop */
