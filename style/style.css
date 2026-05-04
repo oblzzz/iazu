@@ -178,6 +178,10 @@ header .logo-header:hover{
     display: none;
   }
 
+.hero{
+  background-color: var(--branco);
+}
+
 
 .hero-mobile .logo {
   padding: 2rem 0;
@@ -191,16 +195,19 @@ header .logo-header:hover{
   max-width: 30rem;
 }
 
+.hero-mobile{
+  padding-bottom: 2.5rem;
+}
+
 /* ============================================================
    BOTÃO CTA — base mobile
    ============================================================ */
-.cta-desktop { display: none; }
 
 .cta-button {
   transition: .2s;
   display: flex;
   width: clamp(180px, 50vw, 280px);
-  margin: 0 auto 2.5rem;
+  margin:auto;
   justify-content: center;
 }
 
@@ -248,7 +255,10 @@ header .logo-header:hover{
    ============================================================ */
 main {
   background-color: var(--cinza-c);
-  padding: 2.5rem 0;
+}
+
+.main-content{
+  padding-top: 3rem;
 }
 
 /* ============================================================
@@ -256,9 +266,9 @@ main {
    ============================================================ */
 .card {
   display: flex;
-  margin: auto;
+  margin: 0 auto 3rem;
   flex-direction: column;
-  width: 90vw;
+  max-width: 80vw;
   padding: 2.5rem;
   background-color: #ffffff;
   border-radius: 1.875rem;
@@ -284,7 +294,7 @@ main {
    ============================================================ */
 .frame {
   display: flex;
-  margin: 3rem auto;
+  margin: 0 auto 3rem;
   border: 10px solid var(--mostarda);
   width: 90vw;
   max-width: 520px;
@@ -415,6 +425,7 @@ main {
 
 .contato{
   display: flex;
+  background-color: var(--branco);
   justify-content: center;
   align-items: center;
   gap: 1rem;
@@ -479,31 +490,6 @@ footer a:hover{
     padding-left: 1.5rem;
   }
 
-  /* ============================================================ 
-   * Botao CTA
-   * ============================================================ */
-  
-  /* .hero-desktop .cta-desktop {
-    display: block;
-    position: absolute;
-    border: 2px solid yellow;
-    bottom: 2rem;
-    left: 3rem; }
-
-  .hero-desktop .cta-desktop h2 {
-  font-size: clamp(1.5rem, 5.5vw, 1.6rem);
-}
-
-  .cta-button img {
-    width: 100%;
-    display: block; remove espaço fantasma abaixo da img
-  } */
-
-
-    /* ------------------------------------------------------------
-     * Fim do botao cta
-     * ------------------------------------------------------------ */
-    
   .nav {
     position: static;   /* sai do fixed, volta ao fluxo normal */
     width: 100%;
@@ -575,7 +561,7 @@ footer a:hover{
  * ============================================================ */
 
   .hero{
-    border: 2px solid fuchsia;
+    /* border: 2px solid fuchsia; */
   }
 
   .hero-desktop {
@@ -583,7 +569,7 @@ footer a:hover{
     overflow: hidden; /* ESSENCIAL — ancora o cta-desktop */
     display: flex;
     height: 32rem;
-    border: 5px dotted yellow;
+    /* border: 5px dotted yellow; */
   }
 
   /* .hero-desktop{
@@ -669,6 +655,39 @@ footer a:hover{
   .cta-desktop h2 {
   font-size: clamp(1.5rem, 5.5vw, 1.6rem);
 }
+
+/* ============================================================ 
+ * MAIN CONTENT
+ * ============================================================ */
+
+  .main-content{
+    display: grid;
+    /* grid-template-columns: auto 300px 1fr auto; */
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+    position: relative;
+    padding-top: 8rem;
+  }
+
+  .frame{
+    position: absolute;
+    max-width: 35%;
+  }
+
+  .arco:nth-of-type(2) .frame {
+    /* display: flex; */
+    /* position: absolute; */
+    /* width: 50vw; */
+    top: -18rem;
+    right: 2rem;
+  }
+
+  /* .arco:nth-of-type(4) .frame {
+    /* display: flex; */
+    /* position: absolute; */
+    top: -10rem;
+    right: 11rem;
+  } */
   
 
   /* Setas da galeria aparecem no tablet/desktop */
@@ -701,6 +720,8 @@ footer a:hover{
   .gallery-prev { left: 10px; }
   .gallery-next { right: 10px; }
 }
+
+
 
 
 /* ============================================================
