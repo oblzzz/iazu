@@ -36,7 +36,6 @@
   font-style: normal;
 }
 
-
 .fraunces{
   font-family: "Fraunces", serif;
   font-optical-sizing: auto;
@@ -45,6 +44,13 @@
   font-variation-settings:
     "SOFT" 0,
     "WONK" 0;
+}
+
+
+.bodoni-moda {
+  font-family: "Bodoni Moda", serif;
+  font-optical-sizing: auto;
+  font-style: normal;
 }
 
 /* ============================================================
@@ -58,9 +64,10 @@
   --cinza-t: #727272;
   --cinza-c: #EEEEEE;
   --branco: #ffffff;
+  --logo: 'Dream Avenue', serif;
   --titulo: "Berkshire Swash", serif;
   --texto: "Gotu", sans-serif;
-  --serif: "Fraunces", serif;
+  --serif: "Bodoni Moda", serif;
   --shadow: 0.25rem 0.25rem 0.75rem rgba(0, 0, 0, 0.3);
 }
 
@@ -77,7 +84,7 @@ header {
 header .logo-header {
   text-decoration: none;
   color: var(--branco);
-  font-family: 'Dream Avenue' !important;
+  font-family: var(--logo) !important;
   font-size: 3.75rem;
   transition: color .2s;
 }
@@ -105,7 +112,7 @@ header .logo-header:hover{
   width: 2.2rem;
   height: 0.3rem;
   background: white;
-  transition: background 0.2s ease;  /* ← adicione isso aqui */
+  transition: background-color 0.2s ease;  /* ← adicione isso aqui */
 }
 
 .burger:hover span {
@@ -166,6 +173,12 @@ header .logo-header:hover{
 /* ============================================================
    hero-mobile
    ============================================================ */
+
+  .hero-desktop{
+    display: none;
+  }
+
+
 .hero-mobile .logo {
   padding: 2rem 0;
   background-color: var(--branco);
@@ -179,41 +192,47 @@ header .logo-header:hover{
 }
 
 /* ============================================================
-   BOTÃO CTA
+   BOTÃO CTA — base mobile
    ============================================================ */
-  .cta-button{
-    transition: .2s;
-  }
+.cta-desktop { display: none; }
 
-  .cta-button {
+.cta-button {
+  transition: .2s;
   display: flex;
   width: clamp(180px, 50vw, 280px);
   margin: 0 auto 2.5rem;
   justify-content: center;
 }
 
-  .cta-button a {
-  position: relative;
+.cta-button a {
+  position: relative;   /* âncora para o h2 absoluto */
   display: inline-block;
   text-decoration: none;
 }
 
-  .cta-button h2 {
+.cta-button h2 {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: clamp(1.9rem, 5.5vw, 2rem);
+  font-size: clamp(1.7rem, 6.5vw, 2.2rem);
+  letter-spacing: 1px;
   font-family: var(--serif);
   line-height: 0.9;
   font-weight: 300;
   color: var(--branco);
   text-align: center;
   z-index: 2;
+  white-space: nowrap;
 }
 
- .cta-button img {
+.cta-button img {
   width: 100%;
+  display: block; /* remove espaço fantasma abaixo da img */
+}
+
+.cta-button:hover {
+  transform: translateY(-3px) scale(1.05);
 }
 
 /* ============================================================
@@ -408,7 +427,9 @@ main {
 
 .contato h2{
   font-family: var(--serif);
-  font-weight: 600;
+  font-size: 26px;
+  letter-spacing: 1.5px;
+  font-weight: 650;
   color: var(--mostarda);
 }
 
@@ -443,12 +464,14 @@ footer a:hover{
    ============================================================ */
 @media (min-width: 769px) {
 
-  /* Burger some — nav vira barra horizontal */
-  .burger {
+  
+
+  .hero-mobile{
     display: none;
   }
 
-  .hero-mobile{
+  /* Burger some — nav vira barra horizontal */
+  .burger {
     display: none;
   }
 
@@ -456,7 +479,31 @@ footer a:hover{
     padding-left: 1.5rem;
   }
 
+  /* ============================================================ 
+   * Botao CTA
+   * ============================================================ */
+  
+  /* .hero-desktop .cta-desktop {
+    display: block;
+    position: absolute;
+    border: 2px solid yellow;
+    bottom: 2rem;
+    left: 3rem; }
 
+  .hero-desktop .cta-desktop h2 {
+  font-size: clamp(1.5rem, 5.5vw, 1.6rem);
+}
+
+  .cta-button img {
+    width: 100%;
+    display: block; remove espaço fantasma abaixo da img
+  } */
+
+
+    /* ------------------------------------------------------------
+     * Fim do botao cta
+     * ------------------------------------------------------------ */
+    
   .nav {
     position: static;   /* sai do fixed, volta ao fluxo normal */
     width: 100%;
@@ -470,11 +517,11 @@ footer a:hover{
     background-color: transparent;
     font-family: var(--serif);
     text-transform: uppercase;
+    letter-spacing: 2px;
     color: var(--branco);
     opacity: 0.8;
     padding: 16px 40px;
     transition: color .2s, opacity .2s, transform 0.3s ease;
-    
   }
 
   .nav a:hover{
@@ -523,7 +570,105 @@ footer a:hover{
     transform: translateX(-50%) scaleX(1);
   }
 
+/* ============================================================ 
+ * HERO DESKTOP 769
+ * ============================================================ */
 
+  .hero{
+    border: 2px solid fuchsia;
+  }
+
+  .hero-desktop {
+    position: relative; 
+    overflow: hidden; /* ESSENCIAL — ancora o cta-desktop */
+    display: flex;
+    height: 32rem;
+    border: 5px dotted yellow;
+  }
+
+  /* .hero-desktop{
+    display: flex;
+    height: 32rem;
+    border: 2px solid red;
+  } */
+
+  .logo-desk{
+    position: relative;
+    /* border: 2px solid orange; */
+    margin: 3.5rem;
+    z-index: 3;
+  }
+
+  .logo-desk .logosvg{
+    width: clamp(200px, 25vw, 370px);
+    /* border: 2px solid green; */
+    padding-bottom: 0.5rem;
+  }
+
+  .hero-desktop h3{
+    font-family: var(--serif);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--mostarda);
+    font-weight: 450;
+    font-size: clamp(1rem, 2vw, 2rem);
+  }
+
+    /* .hero-desktop .decor img{
+    height: 100px;
+    border: 2px solid blue;
+  } */
+
+  .wire-left{
+    display: flex;       /* aparece no desktop */
+    position: absolute;
+    bottom: -23rem;
+    left: -21rem;
+    margin: 0; /* zera a margem automática do mobile */
+    width: 700px;
+    z-index: 1;
+    /* width: clamp(180px, 13vw, 230px); */
+     /* tamanho próprio no desktop */
+  }
+
+  .wire-right{
+    display: flex;
+    position: absolute;
+    top: -23rem;
+    right: -21rem;
+    margin: 0;
+    width: 700px;
+    z-index: 1;
+  }
+
+  .hands{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    width: clamp(600px, 60vw, 800px);
+  }
+
+
+/* ============================================================ 
+ * CTA HERO DESKTOP
+ * ============================================================ */
+
+
+  .cta-desktop {
+    display: flex;       /* aparece no desktop */
+    position: absolute;
+    bottom: 2rem;
+    right: 4rem;
+    margin: 0; /* zera a margem automática do mobile */
+    width: clamp(220px, 20vw, 240px); /* tamanho próprio no desktop */
+    z-index: 3;
+  }
+
+  .cta-desktop h2 {
+  font-size: clamp(1.5rem, 5.5vw, 1.6rem);
+}
   
 
   /* Setas da galeria aparecem no tablet/desktop */
@@ -556,6 +701,7 @@ footer a:hover{
   .gallery-prev { left: 10px; }
   .gallery-next { right: 10px; }
 }
+
 
 /* ============================================================
    BREAKPOINT — desktop grande (min-width: 1024px)
