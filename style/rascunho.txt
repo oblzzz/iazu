@@ -1,0 +1,76 @@
+.main-content {
+  display: flex;
+  flex-direction: column;
+  }
+
+  .par {
+    display: grid;
+    border: 2px solid red;
+    grid-template-columns: 1fr 1fr;
+    position: relative; /* arco se referencia ao par, não ao main-content */
+  }
+
+
+  .arco{
+    position: relative;
+    width: 100vw;
+    /* height: 100vh; */
+    /* max-width: 35%; */
+  }
+
+   .arco1 {
+    position: absolute;
+    /* top: -18rem;
+    right: 3rem; */
+    /* top: -11%; */
+    top: clamp(-18rem, 90vw, -15rem);
+    right: 5%;
+    width: clamp(300px, 43vw, 700px);
+    z-index: 2;
+  }
+
+  
+
+  .arco2 {
+    position: absolute;
+    top: -15%;   /* sobrepõe o card */
+    left: 5%;
+    width: clamp(300px, 35vw, 500px);
+    z-index: 2;
+  }
+
+  /* ============================================================ 
+   * CARD MAIN CONTENT
+   * ============================================================ */
+  
+  .card{
+  }
+
+  .card1{
+    padding-bottom: 13rem;
+    border-radius: 0px 90px 90px 0;
+    margin-right: 2rem;
+    /* z-index: 3; */
+    
+  }
+
+  .card2{
+    margin-top: 65rem;
+    border-radius: 90px 0px 0px 90px;
+    grid-column: 2;
+    /* z-index: 3; */
+  }
+
+  .img-l{
+    position: absolute;
+    bottom: -10rem;
+    /* left: -8rem; */
+    z-index: 1;
+  }
+
+  /* .img-r{
+    position: absolute;
+    bottom: 50rem;
+    right: -10rem;
+    z-index: 1;
+  } */
